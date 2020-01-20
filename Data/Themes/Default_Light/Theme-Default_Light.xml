@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<theme>
+	<themeData name="Default Light" syntax="Lua_Default_Light">
+		<backgrounds>
+			<editorBackground>#FFFF00</editorBackground>
+			<windowBackground>#FFFFFF</windowBackground>
+			
+		</backgrounds>
+		
+		<colors>
+			<textColor>#000000</textColor>
+			<digitsColor>#DF7000</digitsColor>
+		</colors>
+	</themeData>
+</theme>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<theme>
+	<themeData name="Default Dark" syntax="Lua_Default_Dark">
+		<backgrounds>
+			<editorBackground>#1E1E1E</editorBackground>
+			<windowBackground>#1E1E1E</windowBackground>
+		</backgrounds>
+		
+		<colors>
+			<textColor>#000000</textColor>
+			<digitsColor>#DF7000</digitsColor>
+		</colors>
+	</themeData>
+</theme>
