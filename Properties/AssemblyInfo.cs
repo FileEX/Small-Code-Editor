@@ -12,9 +12,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MTA Code Editor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("FileEX")]
 [assembly: AssemblyProduct("MTA Code Editor")]
-[assembly: AssemblyCopyright("Copyright 2019")]
+[assembly: AssemblyCopyright("© 2020 FileEX")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
