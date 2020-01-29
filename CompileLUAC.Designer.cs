@@ -44,6 +44,7 @@ namespace MTA_Code_Editor
 			this.radioButton1 = new System.Windows.Forms.RadioButton();
 			this.radioButton2 = new System.Windows.Forms.RadioButton();
 			this.label2 = new System.Windows.Forms.Label();
+			this.radioButton3 = new System.Windows.Forms.RadioButton();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -119,11 +120,22 @@ namespace MTA_Code_Editor
 			this.label2.TabIndex = 7;
 			this.label2.Text = "Obfuscate level";
 			// 
+			// radioButton3
+			// 
+			this.radioButton3.Location = new System.Drawing.Point(228, 134);
+			this.radioButton3.Name = "radioButton3";
+			this.radioButton3.Size = new System.Drawing.Size(94, 15);
+			this.radioButton3.TabIndex = 8;
+			this.radioButton3.TabStop = true;
+			this.radioButton3.Text = "3";
+			this.radioButton3.UseVisualStyleBackColor = true;
+			// 
 			// CompileLUAC
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(604, 187);
+			this.Controls.Add(this.radioButton3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.radioButton2);
 			this.Controls.Add(this.radioButton1);
@@ -137,6 +149,7 @@ namespace MTA_Code_Editor
 			this.Text = "CompileLUAC";
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.RadioButton radioButton2;
@@ -146,5 +159,6 @@ namespace MTA_Code_Editor
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.RadioButton radioButton3;
 	}
 }

@@ -26,12 +26,12 @@ namespace MTA_Code_Editor
 			InitializeComponent();
 		}
 		
-		void Button1Click(object sender, EventArgs e)
+		private void Button1Click(object sender, EventArgs e)
 		{
 			this.Dispose();
 		}
 		
-		void Button3Click(object sender, EventArgs e)
+		private void Button3Click(object sender, EventArgs e)
 		{
 			if (savePath.ShowDialog() == DialogResult.OK)
 			{
@@ -42,18 +42,33 @@ namespace MTA_Code_Editor
 			}
 		}
 		
-		void Button2Click(object sender, EventArgs e)
+		private string getLevel()
 		{
-			if (radioButton1.Checked || radioButton2.Checked)
+			string opt;
+			
+			if (radioButton1.Checked) {
+				opt = "e1";
+			} else if (radioButton2.Checked) {
+				opt = "e2";
+			} else {
+				opt = "e3";
+			}
+			
+			return opt;
+		}
+		
+		private void Button2Click(object sender, EventArgs e)
+		{
+			if (radioButton1.Checked || radioButton2.Checked || radioButton3.Checked)
 			{
 				if (textBox1.Text.Length > 0)
-				{
-					string level = radioButton1.Checked ? "e1" : "e2";
+				{					
+					string level = getLevel();
 					
 					string path = System.AppDomain.CurrentDomain.BaseDirectory + @"\templuac.cmd";
-					FileInfo tempFile = new FileInfo(path);
+					var tempFile = new FileInfo(path);
 					
-					string curName = "\\dupa";
+					const string curName = "\\dupa";
 					string curPath = System.AppDomain.CurrentDomain.BaseDirectory + @"\fujara.lua";
 					
 					using (StreamWriter strW = tempFile.CreateText())
