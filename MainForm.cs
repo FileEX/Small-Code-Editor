@@ -38,15 +38,18 @@ namespace MTA_Code_Editor
 			if (tabControl1.TabPages.Count > 0)
 			{
 				int i = tabControl1.SelectedTab.TabIndex;
-				ICSharpCode.TextEditor.TextEditorControl textEditor = (ICSharpCode.TextEditor.TextEditorControl)tabControl1.TabPages[i].Controls[0];
+				var textEditor = (ICSharpCode.TextEditor.TextEditorControl)tabControl1.TabPages[i].Controls[0];
+				textEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 				
 				Color ebgClr = ConvertColor(data[0]);
 				Color edgClr = ConvertColor(data[3]);
 				
-				HighlightColor bgColor = new HighlightColor(Color.Black, ebgClr, false, false);
-				HighlightColor dgColor = new HighlightColor(Color.Black, edgClr, false, false);
+				var bgColor = new HighlightColor(Color.Black, ebgClr, false, false);
+				var dgColor = new HighlightColor(Color.Black, edgClr, false, false);
 				
-				DefaultHighlightingStrategy highlightingStrategy = textEditor.Document.HighlightingStrategy as DefaultHighlightingStrategy;
+				var highlightingStrategy = textEditor.Document.HighlightingStrategy as DefaultHighlightingStrategy;
 				highlightingStrategy.SetColorFor("Default", bgColor);
 				highlightingStrategy.SetColorFor("Digits", dgColor);
 				
@@ -73,7 +76,7 @@ namespace MTA_Code_Editor
 			if (tabControl1.TabPages.Count > 0)
 			{
 				int i = tabControl1.SelectedTab.TabIndex;
-				ICSharpCode.TextEditor.TextEditorControl textEditor = (ICSharpCode.TextEditor.TextEditorControl)tabControl1.TabPages[i].Controls[0];
+				var textEditor = (ICSharpCode.TextEditor.TextEditorControl)tabControl1.TabPages[i].Controls[0];
 				textEditor.SetHighlighting("Lua_" + theme);
 			}
 		}
@@ -122,7 +125,7 @@ namespace MTA_Code_Editor
 			if (tabControl1.TabPages.Count > 0)
 			{
 				int i = tabControl1.SelectedTab.TabIndex;
-				ICSharpCode.TextEditor.TextEditorControl textEditor = (ICSharpCode.TextEditor.TextEditorControl)tabControl1.TabPages[i].Controls[0];
+				var textEditor = (ICSharpCode.TextEditor.TextEditorControl)tabControl1.TabPages[i].Controls[0];
 			
 				int col = textEditor.ActiveTextAreaControl.Caret.Column;
 				int line = textEditor.ActiveTextAreaControl.Caret.Line + 1;
@@ -134,7 +137,7 @@ namespace MTA_Code_Editor
 		//File
 		private void OpenToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			SaveFileDialog newFile = new SaveFileDialog();
+			var newFile = new SaveFileDialog();
 			newFile.Filter = "LUA (*.lua)|*.lua|XML (*.xml)|*.xml|FX (*.fx)|*.fx|All Files (*.*)|*.*";
 			newFile.FileName = "Untitled";
 			
@@ -146,11 +149,14 @@ namespace MTA_Code_Editor
 				{
 					fileStream.Close();
 					
-					TabPage page = new TabPage(Path.GetFileName(newFile.FileName));
+					var page = new TabPage(Path.GetFileName(newFile.FileName));
 					tabControl1.TabPages.Add(page);
 					
-					ICSharpCode.TextEditor.TextEditorControl textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
+					var textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
 					//textEditorControl1.Dock = DockStyle.Fill;
+					textEditorControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+					| System.Windows.Forms.AnchorStyles.Left) 
+					| System.Windows.Forms.AnchorStyles.Right)));
 					
 					page.Controls.Add(textEditorControl1);
 					
@@ -176,6 +182,10 @@ namespace MTA_Code_Editor
 					listView1.Columns.Add("#",20);
 					listView1.Columns.Add("Value", 450, HorizontalAlignment.Center);
 					listView1.Columns.Add("Line", 280, HorizontalAlignment.Center);
+					
+					listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 				
 					page.Controls.Add(listView1);
 				}
@@ -192,7 +202,7 @@ namespace MTA_Code_Editor
 			}
 		}
 		
-		void Base64DecodeToolStripMenuItemClick(object sender, EventArgs e)
+		private void Base64DecodeToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if (tabControl1.TabPages.Count > 0)
 			{
@@ -215,34 +225,62 @@ namespace MTA_Code_Editor
 			if (tabControl1.TabPages.Count > 0)
 			{
 				int i = tabControl1.SelectedTab.TabIndex;
+				string[] arr = new String[3];
+				
+				var debugger = (ListView)tabControl1.TabPages[i].Controls[1];
+				ListViewItem item;
 				
 				try
 				{
-					Script buff = new Script();
+					var buff = new Script();
 					buff.Options.UseLuaErrorLocations = true;
 					
 					DynValue result = buff.DoString(tabControl1.TabPages[i].Controls[0].Text);
-				}
-				catch (ScriptRuntimeException ex)
-				{
-					var msg = System.Text.RegularExpressions.Regex.Match(ex.DecoratedMessage, "\\b(\\d+)\\b");
 					
-					string[] arr = new String[3];
-					ListViewItem item;
-
-					ListView debugger = (ListView)tabControl1.TabPages[i].Controls[1];
-					
-					arr[0] = (debugger.Items.Count + 1).ToString();
-					arr[1] = ex.Message;
-					arr[2] = msg.ToString();
+					arr[0] = "";
+					arr[1] = "Script executed succesfully!";
+					arr[2] = "";
 					
 					item = new ListViewItem(arr);
 					debugger.Items.Add(item);
+					
+					return;
+				}
+				catch (Exception ex)
+				{
+					if (ex is ScriptRuntimeException || ex is SyntaxErrorException)
+					{
+						var scp = ex as ScriptRuntimeException;
+						var excp = ex as SyntaxErrorException;
+						
+						String decMsg;
+						
+						if (scp != null) {
+							decMsg = scp.DecoratedMessage;
+						} else if (excp != null) {
+							decMsg = excp.DecoratedMessage;
+						} else {
+							throw;
+						}
+						
+						var msg = System.Text.RegularExpressions.Regex.Match(decMsg, "\\b(\\d+)\\b");
+						
+						arr[0] = (debugger.Items.Count + 1).ToString();
+						arr[1] = ex.Message;
+						arr[2] = msg.ToString();
+						
+						item = new ListViewItem(arr);
+						debugger.Items.Add(item);
+						
+						return;
+					}
+					
+					throw;
 				}
 			}
 		}
 		
-		void TextFromLeftToRightToolStripMenuItemClick(object sender, EventArgs e)
+		private void TextFromLeftToRightToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if (tabControl1.TabPages.Count > 0) {
 				string direction = settingsManager.getSettingValue("textDirection");
@@ -256,16 +294,32 @@ namespace MTA_Code_Editor
 			}
 		}
 		
-		void ShowTabsSpacesToolStripMenuItemClick(object sender, EventArgs e)
+		private void ShowTabsSpacesToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if (tabControl1.TabPages.Count > 0) {
 				string tabs = settingsManager.getSettingValue("tabsSpaces");
 				int i = tabControl1.SelectedTab.TabIndex;
-				ICSharpCode.TextEditor.TextEditorControl textEditor = (ICSharpCode.TextEditor.TextEditorControl)tabControl1.TabPages[i].Controls[0];
+				var textEditor = (ICSharpCode.TextEditor.TextEditorControl)tabControl1.TabPages[i].Controls[0];
 				
 				textEditor.ShowTabs = tabs == "hide" ? true : false;
 				textEditor.ShowSpaces = tabs == "hide" ? true : false;
+				
+				this.showTabsSpacesToolStripMenuItem.Checked = tabs == "hide";
+				
+				settingsManager.setSettingValue("tabsSpaces", tabs == "hide" ? "show" : "hide");
 			}
+		}
+		
+		private void FullScreenToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			string fScreen = settingsManager.getSettingValue("fullscreen");
+			
+			this.FormBorderStyle = (fScreen == "yes" ? FormBorderStyle.Sizable : FormBorderStyle.None);
+			this.WindowState = (fScreen == "yes" ? FormWindowState.Normal : FormWindowState.Maximized);
+			
+			this.fullScreenToolStripMenuItem.Checked = fScreen == "no";
+			
+			settingsManager.setSettingValue("fullscreen", fScreen == "yes" ? "no" : "yes");
 		}
 	}
 }

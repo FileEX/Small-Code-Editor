@@ -102,15 +102,15 @@ namespace MTA_Code_Editor
 			// 
 			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.fileToolStripMenuItem,
-									this.editToolStripMenuItem,
-									this.searchToolStripMenuItem,
-									this.viewToolStripMenuItem,
-									this.syntaxToolStripMenuItem,
-									this.runToolStripMenuItem,
-									this.toolsToolStripMenuItem,
-									this.settingsToolStripMenuItem,
-									this.helpToolStripMenuItem});
+			this.fileToolStripMenuItem,
+			this.editToolStripMenuItem,
+			this.searchToolStripMenuItem,
+			this.viewToolStripMenuItem,
+			this.syntaxToolStripMenuItem,
+			this.runToolStripMenuItem,
+			this.toolsToolStripMenuItem,
+			this.settingsToolStripMenuItem,
+			this.helpToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(519, 24);
@@ -121,17 +121,17 @@ namespace MTA_Code_Editor
 			// 
 			this.fileToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.openToolStripMenuItem,
-									this.newToolStripMenuItem,
-									this.saveToolStripMenuItem,
-									this.saveAsToolStripMenuItem,
-									this.saveWithEncodingToolStripMenuItem,
-									this.printToolStripMenuItem,
-									this.closeToolStripMenuItem,
-									this.closeToolStripMenuItem1,
-									this.cłoseAllToolStripMenuItem,
-									this.closeAllButThisToolStripMenuItem,
-									this.exitToolStripMenuItem});
+			this.openToolStripMenuItem,
+			this.newToolStripMenuItem,
+			this.saveToolStripMenuItem,
+			this.saveAsToolStripMenuItem,
+			this.saveWithEncodingToolStripMenuItem,
+			this.printToolStripMenuItem,
+			this.closeToolStripMenuItem,
+			this.closeToolStripMenuItem1,
+			this.cłoseAllToolStripMenuItem,
+			this.closeAllButThisToolStripMenuItem,
+			this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
@@ -164,8 +164,8 @@ namespace MTA_Code_Editor
 			// saveWithEncodingToolStripMenuItem
 			// 
 			this.saveWithEncodingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.uTF8ToolStripMenuItem,
-									this.uTF8WithBOMToolStripMenuItem});
+			this.uTF8ToolStripMenuItem,
+			this.uTF8WithBOMToolStripMenuItem});
 			this.saveWithEncodingToolStripMenuItem.Name = "saveWithEncodingToolStripMenuItem";
 			this.saveWithEncodingToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
 			this.saveWithEncodingToolStripMenuItem.Text = "Save With Encoding";
@@ -221,13 +221,13 @@ namespace MTA_Code_Editor
 			// editToolStripMenuItem
 			// 
 			this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.undoToolStripMenuItem,
-									this.redoToolStripMenuItem,
-									this.cutToolStripMenuItem,
-									this.copyToolStripMenuItem,
-									this.pasteToolStripMenuItem,
-									this.copyToClipboardToolStripMenuItem,
-									this.indentToolStripMenuItem});
+			this.undoToolStripMenuItem,
+			this.redoToolStripMenuItem,
+			this.cutToolStripMenuItem,
+			this.copyToolStripMenuItem,
+			this.pasteToolStripMenuItem,
+			this.copyToClipboardToolStripMenuItem,
+			this.indentToolStripMenuItem});
 			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
 			this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
 			this.editToolStripMenuItem.Text = "Edit";
@@ -265,9 +265,9 @@ namespace MTA_Code_Editor
 			// copyToClipboardToolStripMenuItem
 			// 
 			this.copyToClipboardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.fullPathToolStripMenuItem,
-									this.nameOfFileToolStripMenuItem,
-									this.directoryNameOfFileToolStripMenuItem});
+			this.fullPathToolStripMenuItem,
+			this.nameOfFileToolStripMenuItem,
+			this.directoryNameOfFileToolStripMenuItem});
 			this.copyToClipboardToolStripMenuItem.Name = "copyToClipboardToolStripMenuItem";
 			this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
 			this.copyToClipboardToolStripMenuItem.Text = "Copy to clipboard";
@@ -293,7 +293,7 @@ namespace MTA_Code_Editor
 			// indentToolStripMenuItem
 			// 
 			this.indentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.insertIndentToolStripMenuItem});
+			this.insertIndentToolStripMenuItem});
 			this.indentToolStripMenuItem.Name = "indentToolStripMenuItem";
 			this.indentToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
 			this.indentToolStripMenuItem.Text = "Indent";
@@ -307,9 +307,9 @@ namespace MTA_Code_Editor
 			// searchToolStripMenuItem
 			// 
 			this.searchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.findToolStripMenuItem,
-									this.findNextToolStripMenuItem,
-									this.goToLineToolStripMenuItem});
+			this.findToolStripMenuItem,
+			this.findNextToolStripMenuItem,
+			this.goToLineToolStripMenuItem});
 			this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
 			this.searchToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
 			this.searchToolStripMenuItem.Text = "Search";
@@ -317,29 +317,29 @@ namespace MTA_Code_Editor
 			// findToolStripMenuItem
 			// 
 			this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-			this.findToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.findToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.findToolStripMenuItem.Text = "Find";
 			// 
 			// findNextToolStripMenuItem
 			// 
 			this.findNextToolStripMenuItem.Name = "findNextToolStripMenuItem";
-			this.findNextToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.findNextToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.findNextToolStripMenuItem.Text = "Find Next";
 			// 
 			// goToLineToolStripMenuItem
 			// 
 			this.goToLineToolStripMenuItem.Name = "goToLineToolStripMenuItem";
-			this.goToLineToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.goToLineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.goToLineToolStripMenuItem.Text = "Go to line";
 			// 
 			// viewToolStripMenuItem
 			// 
 			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.fullScreenToolStripMenuItem,
-									this.themeToolStripMenuItem,
-									this.fontToolStripMenuItem,
-									this.showTabsSpacesToolStripMenuItem,
-									this.textFromLeftToRightToolStripMenuItem});
+			this.fullScreenToolStripMenuItem,
+			this.themeToolStripMenuItem,
+			this.fontToolStripMenuItem,
+			this.showTabsSpacesToolStripMenuItem,
+			this.textFromLeftToRightToolStripMenuItem});
 			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
 			this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.viewToolStripMenuItem.Text = "View";
@@ -349,6 +349,7 @@ namespace MTA_Code_Editor
 			this.fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
 			this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
 			this.fullScreenToolStripMenuItem.Text = "FullScreen";
+			this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.FullScreenToolStripMenuItemClick);
 			// 
 			// themeToolStripMenuItem
 			// 
@@ -379,13 +380,13 @@ namespace MTA_Code_Editor
 			// syntaxToolStripMenuItem
 			// 
 			this.syntaxToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.lUAToolStripMenuItem,
-									this.hTMLToolStripMenuItem,
-									this.cSSToolStripMenuItem,
-									this.javaScriptToolStripMenuItem,
-									this.hLSLToolStripMenuItem,
-									this.sQLToolStripMenuItem,
-									this.xMLToolStripMenuItem});
+			this.lUAToolStripMenuItem,
+			this.hTMLToolStripMenuItem,
+			this.cSSToolStripMenuItem,
+			this.javaScriptToolStripMenuItem,
+			this.hLSLToolStripMenuItem,
+			this.sQLToolStripMenuItem,
+			this.xMLToolStripMenuItem});
 			this.syntaxToolStripMenuItem.Name = "syntaxToolStripMenuItem";
 			this.syntaxToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
 			this.syntaxToolStripMenuItem.Text = "Syntax";
@@ -435,7 +436,7 @@ namespace MTA_Code_Editor
 			// runToolStripMenuItem
 			// 
 			this.runToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.runLUACodeToolStripMenuItem});
+			this.runLUACodeToolStripMenuItem});
 			this.runToolStripMenuItem.Name = "runToolStripMenuItem";
 			this.runToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
 			this.runToolStripMenuItem.Text = "Run";
@@ -450,9 +451,9 @@ namespace MTA_Code_Editor
 			// toolsToolStripMenuItem
 			// 
 			this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.base64EncodeToolStripMenuItem,
-									this.base64DecodeToolStripMenuItem,
-									this.compileToLUACToolStripMenuItem});
+			this.base64EncodeToolStripMenuItem,
+			this.base64DecodeToolStripMenuItem,
+			this.compileToLUACToolStripMenuItem});
 			this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
 			this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
 			this.toolsToolStripMenuItem.Text = "Tools";
@@ -481,7 +482,7 @@ namespace MTA_Code_Editor
 			// settingsToolStripMenuItem
 			// 
 			this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.preferenceToolStripMenuItem});
+			this.preferenceToolStripMenuItem});
 			this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
 			this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
 			this.settingsToolStripMenuItem.Text = "Settings";
@@ -495,7 +496,7 @@ namespace MTA_Code_Editor
 			// helpToolStripMenuItem
 			// 
 			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.aboutMTACodeEditorToolStripMenuItem});
+			this.aboutMTACodeEditorToolStripMenuItem});
 			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
 			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.helpToolStripMenuItem.Text = "Help";
@@ -508,19 +509,21 @@ namespace MTA_Code_Editor
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-									| System.Windows.Forms.AnchorStyles.Right)));
-			this.tabControl1.Location = new System.Drawing.Point(79, 27);
+			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl1.Location = new System.Drawing.Point(104, 27);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.RightToLeftLayout = true;
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(800, 455);
+			this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
 			this.tabControl1.TabIndex = 5;
 			// 
 			// editInfo
 			// 
 			this.editInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.editInfo.Location = new System.Drawing.Point(762, 4);
 			this.editInfo.Name = "editInfo";
 			this.editInfo.Size = new System.Drawing.Size(142, 21);
@@ -553,6 +556,7 @@ namespace MTA_Code_Editor
 			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 		private System.Windows.Forms.ToolStripMenuItem closeAllButThisToolStripMenuItem;
 		private System.Windows.Forms.Panel panel1;
