@@ -43,8 +43,14 @@ namespace MTA_Code_Editor
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveWithEncodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aNSIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.unicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.bigIndianUnicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.uTF8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.uTF8WithBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.othersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.uTF32ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.uTF7ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.closeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +119,7 @@ namespace MTA_Code_Editor
 			this.helpToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(519, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(427, 24);
 			this.menuStrip1.TabIndex = 4;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -139,83 +145,146 @@ namespace MTA_Code_Editor
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.openToolStripMenuItem.Text = "New File...";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItemClick);
 			// 
 			// newToolStripMenuItem
 			// 
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-			this.newToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.newToolStripMenuItem.Text = "Open File...";
+			this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItemClick);
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.saveToolStripMenuItem.Text = "Open Folder...";
 			// 
 			// saveAsToolStripMenuItem
 			// 
 			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.saveAsToolStripMenuItem.Text = "Save";
+			this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItemClick);
 			// 
 			// saveWithEncodingToolStripMenuItem
 			// 
 			this.saveWithEncodingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.aNSIIToolStripMenuItem,
+			this.unicodeToolStripMenuItem,
+			this.bigIndianUnicodeToolStripMenuItem,
 			this.uTF8ToolStripMenuItem,
-			this.uTF8WithBOMToolStripMenuItem});
+			this.uTF8WithBOMToolStripMenuItem,
+			this.othersToolStripMenuItem});
 			this.saveWithEncodingToolStripMenuItem.Name = "saveWithEncodingToolStripMenuItem";
-			this.saveWithEncodingToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.saveWithEncodingToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.saveWithEncodingToolStripMenuItem.Text = "Save With Encoding";
+			// 
+			// aNSIIToolStripMenuItem
+			// 
+			this.aNSIIToolStripMenuItem.Name = "aNSIIToolStripMenuItem";
+			this.aNSIIToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.aNSIIToolStripMenuItem.Text = "ANSI";
+			this.aNSIIToolStripMenuItem.Click += new System.EventHandler(this.ANSIIToolStripMenuItemClick);
+			// 
+			// unicodeToolStripMenuItem
+			// 
+			this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
+			this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.unicodeToolStripMenuItem.Text = "Unicode";
+			this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.UnicodeToolStripMenuItemClick);
+			// 
+			// bigIndianUnicodeToolStripMenuItem
+			// 
+			this.bigIndianUnicodeToolStripMenuItem.Name = "bigIndianUnicodeToolStripMenuItem";
+			this.bigIndianUnicodeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.bigIndianUnicodeToolStripMenuItem.Text = "Big Endian Unicode";
+			this.bigIndianUnicodeToolStripMenuItem.Click += new System.EventHandler(this.BigIndianUnicodeToolStripMenuItemClick);
 			// 
 			// uTF8ToolStripMenuItem
 			// 
 			this.uTF8ToolStripMenuItem.Name = "uTF8ToolStripMenuItem";
-			this.uTF8ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+			this.uTF8ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.uTF8ToolStripMenuItem.Text = "UTF-8";
+			this.uTF8ToolStripMenuItem.Click += new System.EventHandler(this.UTF8ToolStripMenuItemClick);
 			// 
 			// uTF8WithBOMToolStripMenuItem
 			// 
 			this.uTF8WithBOMToolStripMenuItem.Name = "uTF8WithBOMToolStripMenuItem";
-			this.uTF8WithBOMToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-			this.uTF8WithBOMToolStripMenuItem.Text = "UTF-8 with BOM";
+			this.uTF8WithBOMToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.uTF8WithBOMToolStripMenuItem.Text = "UTF-8 (without BOM)";
+			this.uTF8WithBOMToolStripMenuItem.Click += new System.EventHandler(this.UTF8WithBOMToolStripMenuItemClick);
+			// 
+			// othersToolStripMenuItem
+			// 
+			this.othersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.uTF32ToolStripMenuItem,
+			this.uTF7ToolStripMenuItem});
+			this.othersToolStripMenuItem.Name = "othersToolStripMenuItem";
+			this.othersToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.othersToolStripMenuItem.Text = "Others";
+			// 
+			// uTF32ToolStripMenuItem
+			// 
+			this.uTF32ToolStripMenuItem.Name = "uTF32ToolStripMenuItem";
+			this.uTF32ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.uTF32ToolStripMenuItem.Text = "UTF-32";
+			this.uTF32ToolStripMenuItem.Click += new System.EventHandler(this.UTF32ToolStripMenuItemClick);
+			// 
+			// uTF7ToolStripMenuItem
+			// 
+			this.uTF7ToolStripMenuItem.Name = "uTF7ToolStripMenuItem";
+			this.uTF7ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.uTF7ToolStripMenuItem.Text = "UTF-7";
+			this.uTF7ToolStripMenuItem.Click += new System.EventHandler(this.UTF7ToolStripMenuItemClick);
 			// 
 			// printToolStripMenuItem
 			// 
 			this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-			this.printToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+			| System.Windows.Forms.Keys.S)));
+			this.printToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.printToolStripMenuItem.Text = "Save As";
 			// 
 			// closeToolStripMenuItem
 			// 
 			this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-			this.closeToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+			| System.Windows.Forms.Keys.S)));
+			this.closeToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.closeToolStripMenuItem.Text = "Save All";
 			// 
 			// closeToolStripMenuItem1
 			// 
 			this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-			this.closeToolStripMenuItem1.Size = new System.Drawing.Size(179, 22);
+			this.closeToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+			this.closeToolStripMenuItem1.Size = new System.Drawing.Size(197, 22);
 			this.closeToolStripMenuItem1.Text = "Close";
 			// 
 			// cłoseAllToolStripMenuItem
 			// 
 			this.cłoseAllToolStripMenuItem.Name = "cłoseAllToolStripMenuItem";
-			this.cłoseAllToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.cłoseAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+			| System.Windows.Forms.Keys.W)));
+			this.cłoseAllToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.cłoseAllToolStripMenuItem.Text = "Cłose All";
 			// 
 			// closeAllButThisToolStripMenuItem
 			// 
 			this.closeAllButThisToolStripMenuItem.Name = "closeAllButThisToolStripMenuItem";
-			this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.closeAllButThisToolStripMenuItem.Text = "Close All But This";
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			// 
 			// editToolStripMenuItem
@@ -277,18 +346,21 @@ namespace MTA_Code_Editor
 			this.fullPathToolStripMenuItem.Name = "fullPathToolStripMenuItem";
 			this.fullPathToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.fullPathToolStripMenuItem.Text = "Full path of file";
+			this.fullPathToolStripMenuItem.Click += new System.EventHandler(this.FullPathToolStripMenuItemClick);
 			// 
 			// nameOfFileToolStripMenuItem
 			// 
 			this.nameOfFileToolStripMenuItem.Name = "nameOfFileToolStripMenuItem";
 			this.nameOfFileToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.nameOfFileToolStripMenuItem.Text = "Name of file";
+			this.nameOfFileToolStripMenuItem.Click += new System.EventHandler(this.NameOfFileToolStripMenuItemClick);
 			// 
 			// directoryNameOfFileToolStripMenuItem
 			// 
 			this.directoryNameOfFileToolStripMenuItem.Name = "directoryNameOfFileToolStripMenuItem";
 			this.directoryNameOfFileToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.directoryNameOfFileToolStripMenuItem.Text = "Directory name of file";
+			this.directoryNameOfFileToolStripMenuItem.Click += new System.EventHandler(this.DirectoryNameOfFileToolStripMenuItemClick);
 			// 
 			// indentToolStripMenuItem
 			// 
@@ -317,19 +389,19 @@ namespace MTA_Code_Editor
 			// findToolStripMenuItem
 			// 
 			this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-			this.findToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.findToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
 			this.findToolStripMenuItem.Text = "Find";
 			// 
 			// findNextToolStripMenuItem
 			// 
 			this.findNextToolStripMenuItem.Name = "findNextToolStripMenuItem";
-			this.findNextToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.findNextToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
 			this.findNextToolStripMenuItem.Text = "Find Next";
 			// 
 			// goToLineToolStripMenuItem
 			// 
 			this.goToLineToolStripMenuItem.Name = "goToLineToolStripMenuItem";
-			this.goToLineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.goToLineToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
 			this.goToLineToolStripMenuItem.Text = "Go to line";
 			// 
 			// viewToolStripMenuItem
@@ -616,5 +688,11 @@ namespace MTA_Code_Editor
 		private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
 		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem aNSIIToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem othersToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem unicodeToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem bigIndianUnicodeToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem uTF32ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem uTF7ToolStripMenuItem;
 	}
 }

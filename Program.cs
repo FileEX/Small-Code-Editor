@@ -23,7 +23,7 @@ namespace MTA_Code_Editor
 			// Init classes
 			new ThemesParser();
 			new Settings();
+			new LanguageManager();
 		}
-		
 	}
 }

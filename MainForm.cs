@@ -7,12 +7,14 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ICSharpCode.TextEditor.Document;
 using System.IO;
 using System.Timers;
+using System.Text;
 using MoonSharp.Interpreter;
 
 namespace MTA_Code_Editor
@@ -21,7 +23,10 @@ namespace MTA_Code_Editor
 	{
 		ThemesParser themeLoader = new ThemesParser();
 		Settings settingsManager = new Settings();
+		LanguageManager lanManager = new LanguageManager();
 		ListView listView1;
+		
+		OrderedDictionary tabsData = new OrderedDictionary();
 		
 		public MainForm()
 		{
@@ -90,6 +95,9 @@ namespace MTA_Code_Editor
 			themeLoader.LoadTheme(theme);
 			
 			InitalizeTheme(themeLoader.GetData());
+			
+			string ln = settingsManager.getSettingValue("language");
+			lanManager.setLanguage(ln);
 					
 			// Install timer
 			var updTimer = new System.Timers.Timer(550);
@@ -134,6 +142,63 @@ namespace MTA_Code_Editor
 			}
 		}
 		
+		private void setPageData(int page, string data)
+		{
+			if (tabsData.Contains(page)) {
+				tabsData[page] = data;
+			} else {
+				tabsData.Add(page, data);
+			}
+		}
+		
+		private void addNewTab(string name)
+		{
+			var page = new TabPage(Path.GetFileName(name));
+			tabControl1.TabPages.Add(page);
+					
+			var textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
+
+			textEditorControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+					
+			page.Controls.Add(textEditorControl1);
+					
+			textEditorControl1.Size = new Size(new Point(tabControl1.Size.Width - 6, 339 - 24));
+				
+			ApplySyntax(ref textEditorControl1);
+			InitalizeTheme(themeLoader.GetData());
+					
+			textEditorControl1.Refresh();
+			
+			// Console
+			listView1 = new ListView();
+					
+			listView1.Location = new Point(0, 320);
+			listView1.Name = "listView1";
+			listView1.Size = new Size(785, 100);
+			listView1.TabIndex = 7;
+			listView1.UseCompatibleStateImageBehavior = false;
+					
+			listView1.View = View.Details;
+			listView1.GridLines = true;
+			listView1.FullRowSelect = true;
+			
+			listView1.Columns.Add("#",20);
+			listView1.Columns.Add("Value", 450, HorizontalAlignment.Center);
+			listView1.Columns.Add("Line", 280, HorizontalAlignment.Center);
+					
+			listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+				
+			page.Controls.Add(listView1);
+			
+			tabControl1.SelectedTab = page;
+			
+			setPageData(tabControl1.SelectedTab.TabIndex, name);
+		}
+		
 		//File
 		private void OpenToolStripMenuItemClick(object sender, EventArgs e)
 		{
@@ -148,48 +213,87 @@ namespace MTA_Code_Editor
 				if ((fileStream = newFile.OpenFile()) != null)
 				{
 					fileStream.Close();
+					fileStream.Dispose();
 					
-					var page = new TabPage(Path.GetFileName(newFile.FileName));
-					tabControl1.TabPages.Add(page);
-					
-					var textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
-					//textEditorControl1.Dock = DockStyle.Fill;
-					textEditorControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-					| System.Windows.Forms.AnchorStyles.Left) 
-					| System.Windows.Forms.AnchorStyles.Right)));
-					
-					page.Controls.Add(textEditorControl1);
-					
-					textEditorControl1.Size = new Size(new Point(tabControl1.Size.Width - 6, 339 - 24));
-				
-					ApplySyntax(ref textEditorControl1);
-					InitalizeTheme(themeLoader.GetData());
-					
-					textEditorControl1.Refresh();
-					
-					listView1 = new ListView();
-					
-					listView1.Location = new Point(0, 320);
-					listView1.Name = "listView1";
-					listView1.Size = new Size(785, 100);
-					listView1.TabIndex = 7;
-					listView1.UseCompatibleStateImageBehavior = false;
-					
-					listView1.View = View.Details;
-					listView1.GridLines = true;
-					listView1.FullRowSelect = true;
-			
-					listView1.Columns.Add("#",20);
-					listView1.Columns.Add("Value", 450, HorizontalAlignment.Center);
-					listView1.Columns.Add("Line", 280, HorizontalAlignment.Center);
-					
-					listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
-				
-					page.Controls.Add(listView1);
+					addNewTab(newFile.FileName);
 				}
 			}
+		}
+		
+		private void saveFileWithEncoding(Encoding encoding)
+		{
+			if (tabControl1.TabPages.Count > 0)
+			{
+				int i = tabControl1.SelectedTab.TabIndex;
+				
+				File.WriteAllText(tabsData[i].ToString(), tabControl1.TabPages[i].Controls[0].Text, encoding);
+				
+				MessageBox.Show("Saved!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+		}
+		
+		private void NewToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			var file = new OpenFileDialog();
+			file.Filter = "LUA (*.lua)|*.lua|XML (*.xml)|*.xml|FX (*.fx)|*.fx|All Files (*.*)|*.*";
+			
+			if (file.ShowDialog() == DialogResult.OK)
+			{
+				var stream = new FileStream(file.FileName, FileMode.Open, FileAccess.ReadWrite);
+				var reader = new StreamReader(stream);
+				
+				addNewTab(file.FileName);
+				
+				int i = tabControl1.SelectedTab.TabIndex;
+				
+				tabControl1.TabPages[i].Controls[0].Text = reader.ReadToEnd();
+				
+				stream.Close();
+				stream.Dispose();
+				reader.Close();
+				reader.Dispose();
+			}
+		}
+		
+		// Encodings
+		private void SaveAsToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			saveFileWithEncoding(Encoding.Default);
+		}
+		
+		private void ANSIIToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			saveFileWithEncoding(Encoding.Default);
+		}
+		
+		private void UTF8ToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			saveFileWithEncoding(Encoding.UTF8);
+		}
+		
+		private void UTF8WithBOMToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			saveFileWithEncoding((Encoding) new UTF8Encoding(false));
+		}
+		
+		private void UnicodeToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			saveFileWithEncoding(Encoding.Unicode);
+		}
+		
+		private void BigIndianUnicodeToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			saveFileWithEncoding(Encoding.BigEndianUnicode);
+		}
+		
+		private void UTF32ToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			saveFileWithEncoding(Encoding.UTF32);
+		}
+		
+		private void UTF7ToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			saveFileWithEncoding(Encoding.UTF7);
 		}
 		
 		//Tools
@@ -235,7 +339,7 @@ namespace MTA_Code_Editor
 					var buff = new Script();
 					buff.Options.UseLuaErrorLocations = true;
 					
-					DynValue result = buff.DoString(tabControl1.TabPages[i].Controls[0].Text);
+					buff.DoString(tabControl1.TabPages[i].Controls[0].Text);
 					
 					arr[0] = "";
 					arr[1] = "Script executed succesfully!";
@@ -280,6 +384,7 @@ namespace MTA_Code_Editor
 			}
 		}
 		
+		//View
 		private void TextFromLeftToRightToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if (tabControl1.TabPages.Count > 0) {
@@ -320,6 +425,40 @@ namespace MTA_Code_Editor
 			this.fullScreenToolStripMenuItem.Checked = fScreen == "no";
 			
 			settingsManager.setSettingValue("fullscreen", fScreen == "yes" ? "no" : "yes");
+		}
+		
+		//Edit
+		private void FullPathToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if (tabControl1.TabPages.Count > 0) {
+				int i = tabControl1.SelectedTab.TabIndex;
+				
+				Clipboard.SetText(tabsData[i].ToString());
+				
+				MessageBox.Show("Copioed!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+		}
+		
+		private void NameOfFileToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if (tabControl1.TabPages.Count > 0) {
+				int i = tabControl1.SelectedTab.TabIndex;
+				
+				Clipboard.SetText(Path.GetFileName(tabsData[i].ToString()));
+				
+				MessageBox.Show("Copioed!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+		}
+		
+		private void DirectoryNameOfFileToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if (tabControl1.TabPages.Count > 0) {
+				int i = tabControl1.SelectedTab.TabIndex;
+				
+				Clipboard.SetText(Path.GetDirectoryName(tabsData[i].ToString()));
+				
+				MessageBox.Show("Copioed!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
 		}
 	}
 }

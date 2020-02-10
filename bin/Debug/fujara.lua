@@ -1,1 +1,1 @@
-print("gnój")
+﻿print("siema grubasie")
